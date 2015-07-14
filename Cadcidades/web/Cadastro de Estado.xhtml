@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta charset="utf-8"/>
+                <title>Cadastro de Estado</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+                <link href="css/bootstrap.min_2.css" rel="stylesheet"/>
+                <link href="css/styles.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body>
+        
+<h:form class="form-horizontal modal-content col-lg-10">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Cadastro de UF</legend>
+
+<!-- Text input-->
+<div class="control-group">
+    <h:outputLabel value="Estado" for="Estado"/>
+  <div class="controls">
+      <h:inputText id="Estado" value="#{estadoBean.estado.nome}" pt:placeholder="Informe nome do Estado" class="input-xlarge"/>
+  </div>
+</div>
+
+<!-- Text input-->
+
+
+<!-- Text input-->
+<div class="control-group">
+      <h:outputLabel value="UF.: " for="uf"/>
+  <div class="controls">
+      <h:inputText id="uf" value="#{estadoBean.estado.sigla}" pt:placeholder="UF" class="input-xlarge"/>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="control-group">
+  <label class="control-label" for="salvar"></label>
+  <div class="controls">
+      <h:commandButton id="salvar" value="Salvar" class="btn btn-success" action="#{estadoBean.adicionaEstado()}"/>
+      <h:commandButton id="cancelar" value="Cancelar" class="btn btn-danger"/>
+  </div>
+</div>
+  
+</fieldset>
+    
+    <h:dataTable id="items" value="#{uFBean.ufss}"   
+   var="items">   
+    <h:column >   
+          <f:facet name="header">   
+        <h:outputText value="Cód. IBGE" />   
+          </f:facet>   
+        <h:outputText value="#{items.codIBGE}"/>   
+    </h:column>   
+    <h:column>   
+          <f:facet name="header">   
+        <h:outputText value="Estado"/>   
+          </f:facet>   
+        <h:outputText value="#{items.nome}"/>   
+    </h:column>   
+         <h:column>   
+          <f:facet name="header">   
+        <h:outputText value="UF"/>   
+          </f:facet>   
+             <h:outputText value="#{items.sigla}"/>   
+    </h:column>  
+</h:dataTable>   
+  </h:form>
+       
+</h:body>
+</html>
+
+
