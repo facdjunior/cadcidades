@@ -1,28 +1,32 @@
 package br.com.facdjunior.controle;
 
+/**
+ *
+ * @author Francisco Junior 08/07/2015
+ */
+
+
 import br.com.facdjunior.modelo.Estado;
+import java.io.Serializable;
+import javax.faces.view.ViewScoped;
+import javax.persistence.EntityManager;
 import br.com.facdjunior.modelo.EstadoRepository;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- *
- * @author TESTE
- */
 @ManagedBean
 @ViewScoped
-public class EstadoBean {
-    
-        private Estado estado = new Estado();
+public class EstadoBean implements Serializable{
+
+
+	private Estado estado = new Estado();
         private EstadoRepository rep = new EstadoRepository(null);
         
         //ADICIONA NOVO REGISTRO
-    public void adicionaEstado(){
+    public void adicionaUF(){
         EntityManager manager = this.getEntityManager();
         EstadoRepository repository = new EstadoRepository(manager);
         
@@ -32,7 +36,7 @@ public class EstadoBean {
     
     //MOSTRA REGISTROS CADASTRADOS
     public List<Estado> getEstados(){
-        EntityManager manager = this.getEntityManager();
+        EntityManager  manager = this.getEntityManager();
         EstadoRepository repository = new EstadoRepository(manager);
         return repository.buscaTodos();
     }
@@ -61,4 +65,6 @@ public class EstadoBean {
     public void setRep(EstadoRepository rep) {
         this.rep = rep;
     }
+    
 }
+

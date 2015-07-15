@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.facdjunior.modelo;
 
 import java.util.List;
@@ -6,7 +11,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Francisco Junior 15/07/2015
+ * @author Francisco Junior
  */
 public class CidadeRepository {
     
@@ -14,17 +19,9 @@ public class CidadeRepository {
     
     private Cidade nome;
     private Cidade idEstado;
-    private Cidade codIBGE;
+    private Cidade codibge;
 
-    public CidadeRepository(EntityManager manager) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public EntityManager getManager() {
-        return manager;
-    }
-
-    public void setManager(EntityManager manager) {
+    public CidadeRepository(EntityManager manager){
         this.manager = manager;
     }
 
@@ -44,18 +41,26 @@ public class CidadeRepository {
         this.idEstado = idEstado;
     }
 
-    public Cidade getCodIBGE() {
-        return codIBGE;
+    public Cidade getCodibge() {
+        return codibge;
     }
 
-    public void setCodIBGE(Cidade codIBGE) {
-        this.codIBGE = codIBGE;
+    public void setCodibge(Cidade codibge) {
+        this.codibge = codibge;
     }
 
+    public EntityManager getManager() {
+        return manager;
+    }
 
-    public void adiciona(Cidade cidade){
+    public void setManager(EntityManager manager) {
+        this.manager = manager;
+    }
+    
+    public void adicionaCidade(Cidade cidade){
         this.manager.persist(cidade);
     }
+            
     public List<Cidade> buscaTodos(){
         Query query = this.manager.createQuery("select x from Cidade x ORDER BY X.nome");
         return query.getResultList();
