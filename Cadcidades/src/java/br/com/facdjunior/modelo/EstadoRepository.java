@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.facdjunior.modelo;
 
 import java.util.List;
@@ -11,14 +6,31 @@ import javax.persistence.Query;
 
 /**
  *
- * @author TESTE
+ * @author Francisco Junior 15/07/2015
  */
 public class EstadoRepository {
     
     private EntityManager manager;
+    
     private Estado nome;
     private Estado silga;
-    private Estado idEstado;
+    private Estado codIBGE;
+
+    public EntityManager getManager() {
+        return manager;
+    }
+
+    public void setManager(EntityManager manager) {
+        this.manager = manager;
+    }
+
+    public Estado getcodIBGE() {
+        return codIBGE;
+    }
+
+    public void setcodIBGE(Estado codIBGE) {
+        this.codIBGE = codIBGE;
+    }
 
     
     public Estado getNome() {
@@ -37,21 +49,13 @@ public class EstadoRepository {
         this.silga = silga;
     }
 
-    public Estado getCodIBGE() {
-        return idEstado;
-    }
-
-    public void setCodIBGE(Estado idEstado) {
-        this.idEstado = idEstado;
-    }
-    
     
      public EstadoRepository(EntityManager manager){
         this.manager = manager;
     }
 
-        public void adiciona(Estado uf){
-        this.manager.persist(uf);
+    public void adiciona(Estado estado){
+        this.manager.persist(estado);
     }
     public List<Estado> buscaTodos(){
         Query query = this.manager.createQuery("select x from Estado x ORDER BY X.nome");

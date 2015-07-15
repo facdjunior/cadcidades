@@ -1,7 +1,7 @@
 package br.com.facdjunior.controle;
 
-import br.com.facdjunior.modelo.Estado;
-import br.com.facdjunior.modelo.EstadoRepository;
+import br.com.facdjunior.modelo.Cidade;
+import br.com.facdjunior.modelo.CidadeRepository;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -12,28 +12,28 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author TESTE
+ * @author Francisco Juniro 15/07/2015
  */
 @ManagedBean
 @ViewScoped
-public class EstadoBean {
+public class CidadeBean {
     
-        private Estado estado = new Estado();
-        private EstadoRepository rep = new EstadoRepository(null);
+        private Cidade cidade = new Cidade();
+        private CidadeRepository  rep = new CidadeRepository(null);
         
         //ADICIONA NOVO REGISTRO
-    public void adicionaEstado(){
+    public void adicionaCidade(){
         EntityManager manager = this.getEntityManager();
-        EstadoRepository repository = new EstadoRepository(manager);
+        CidadeRepository repository = new CidadeRepository(manager);
         
-        repository.adiciona(this.estado);
-        this.estado = new Estado();
+        rep.adiciona(this.cidade);
+        this.cidade = new Cidade();
     }
     
     //MOSTRA REGISTROS CADASTRADOS
-    public List<Estado> getEstados(){
+    public List<Cidade> getCidades(){
         EntityManager manager = this.getEntityManager();
-        EstadoRepository repository = new EstadoRepository(manager);
+        CidadeRepository repository = new CidadeRepository(manager);
         return repository.buscaTodos();
     }
 	
@@ -46,19 +46,23 @@ public class EstadoBean {
         return manager;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
-    public EstadoRepository getRep() {
+    public CidadeRepository getRep() {
         return rep;
     }
 
-    public void setRep(EstadoRepository rep) {
+    public void setRep(CidadeRepository rep) {
         this.rep = rep;
     }
+
+   
+
+
 }

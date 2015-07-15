@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.facdjunior.modelo;
 
 import java.io.Serializable;
@@ -23,6 +18,15 @@ public class Estado implements Serializable {
     private Long idEstado;
     private String nome;
     private String sigla;
+    private Integer codIBGE;
+
+    public Integer getCodIBGE() {
+        return codIBGE;
+    }
+
+    public void setCodIBGE(Integer codIBGE) {
+        this.codIBGE = codIBGE;
+    }
 
     public Long getIdEstado() {
         return idEstado;

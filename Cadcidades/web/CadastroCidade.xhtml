@@ -10,7 +10,7 @@
     <h:head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<meta charset="utf-8"/>
-                <title>Cadastro de Estado</title>
+                <title>Cadastro de Cidades</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
                 <link href="css/bootstrap.min_2.css" rel="stylesheet"/>
@@ -25,13 +25,13 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Cadastro de UF</legend>
+<legend>Cadastro de Cidades</legend>
 
 <!-- Text input-->
 <div class="control-group">
-    <h:outputLabel value="Estado" for="Estado"/>
+    <h:outputLabel value="Cidade" for="cidade"/>
   <div class="controls">
-      <h:inputText id="Estado" value="#{estadoBean.estado.nome}" pt:placeholder="Informe nome do Estado" class="input-xlarge"/>
+      <h:inputText id="cidade" value="#{cidadeBean.cidade.nome}" pt:placeholder="Informe nome do Cidade" class="input-xlarge"/>
   </div>
 </div>
 
@@ -39,36 +39,36 @@
 <div class="control-group">
     <h:outputLabel value="Cód. IBGE" for="codigo"/>
   <div class="controls">
-      <h:inputText id="codigo" value="#{estadoBean.estado.codIBGE}" pt:placeholder="Informe nome do Estado" class="input-xlarge"/>
+      <h:inputText id="codigo" value="#{cidadeBean.cidade.codibge}" pt:placeholder="Informe Código IBGE da cidade" class="input-xlarge"/>
   </div>
 </div>
 
-<!-- Text input-->
-<div class="control-group">
-      <h:outputLabel value="UF.: " for="uf"/>
-  <div class="controls">
-      <h:inputText id="uf" value="#{estadoBean.estado.sigla}" pt:placeholder="UF" class="input-xlarge"/>
-  </div>
-</div>
+  <h:outputLabel value="Estado: *" />
+  <h:selectOneMenu id="estado" value="#{cidadeBean.cidade.estado}" required="true" requiredMessage="Campo obrigatório" converter="converterEstado" style="width: 250px;" >
+                        <f:selectItem itemLabel="Selecione" />
+                        <f:selectItems value="#{estadoBean.estados}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
+                       
+  </h:selectOneMenu>
+                    <p:message for="estado" />
 
 <!-- Button (Double) -->
 <div class="control-group">
   <label class="control-label" for="salvar"></label>
   <div class="controls">
-      <h:commandButton id="salvar" value="Salvar" class="btn btn-success" action="#{estadoBean.adicionaEstado()}"/>
+      <h:commandButton id="salvar" value="Salvar" class="btn btn-success" action="#{cidadeBean.adicionaCidade()}"/>
       <h:commandButton id="cancelar" value="Cancelar" class="btn btn-danger"/>
   </div>
 </div>
   
 </fieldset>
     
-    <h:dataTable id="items"  value="#{estadoBean.estados}"  
+    <h:dataTable id="items"    
    var="items">   
     <h:column >   
           <f:facet name="header">   
         <h:outputText value="Cód. IBGE" />   
           </f:facet>   
-        <h:outputText value="#{items.codIBGE}"/>   
+        <h:outputText value="#{items.codibge}"/>   
     </h:column>   
     <h:column>   
           <f:facet name="header">   
@@ -80,12 +80,13 @@
           <f:facet name="header">   
         <h:outputText value="UF"/>   
           </f:facet>   
-             <h:outputText value="#{items.sigla}"/>   
+             <h:outputText value="#{items.estado}"/>   
     </h:column>  
 </h:dataTable>   
   </h:form>
        
 </h:body>
 </html>
+
 
 
