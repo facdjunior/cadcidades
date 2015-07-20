@@ -44,7 +44,7 @@
 </div>
 
   <h:outputLabel value="Estado:" />
-  <h:selectOneMenu id="estado" value="#{enderecoBean.cidade.idEstado}" required="true" requiredMessage="Campo obrigatório" style="width: 250px;" >
+  <h:selectOneMenu id="estado" value="#{cidadeBean.cidade.estado}" required="true" requiredMessage="Campo obrigatório" style="width: 250px;" converter="converterEstado" >
                         <f:selectItem itemLabel="Selecione" />
                         <f:selectItems value="#{estadoBean.estados}" var="e" itemValue="#{e}" itemLabel="#{e.nome}" />
   </h:selectOneMenu>
@@ -60,8 +60,31 @@
 </div>
   
 </fieldset>
+    <p:dataTable id="grid" var="cidades" value="#{cidadeBean.cidades}" paginator="true" rows="5" 
+                 rowsPerPageTemplate="5,100,1500" paginatorPosition="bottom" emptyMessage="Nenhum Registro encontrado">
     
-    <h:dataTable id="items"    
+        <p:column width="120" resizable="true" headerText="Código">
+            <h:outputText value="#{cidades.idCidade}"/>
+        </p:column>
+        
+        
+        <p:column headerText="Cidades">      
+            <f:facet name="header">      
+                <h:outputText value="Cidades" />      
+            </f:facet>      
+            <h:outputText value="#{cidades.nome}" />      
+        </p:column> 
+        
+        <p:column style="width:4%">
+            <p:commandLink id="btnSelecionar" action="#{cidadeBean.Editar(cidade)}" ajax="false" title="Editar">
+                <h:graphicImage  value="/resources/images/delete.png" />
+                <f:setPropertyActionListener value="#{cidades.idCidade}" target="#{cidades}"/>
+            </p:commandLink>
+        </p:column>
+    </p:dataTable>
+                 
+    
+    <h:dataTable id="items" value="#{cidadeBean.cidades}"   
    var="items">   
     <h:column >   
           <f:facet name="header">   
@@ -75,11 +98,11 @@
           </f:facet>   
         <h:outputText value="#{items.nome}  -"/>   
     </h:column>   
-         <h:column>   
+    <h:column>   
           <f:facet name="header">   
         <h:outputText value="UF"/>   
           </f:facet>   
-             <h:outputText value="#{items.estado}"/>   
+        <h:outputText value="#{items.estado}" converter="converterEstado"/>   
     </h:column>  
 </h:dataTable>   
   </h:form>

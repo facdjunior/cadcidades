@@ -24,19 +24,20 @@ public class Cidade implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCidade;
     private String nome;
+    @ManyToOne
+    @JoinColumn(name = "idEstado")
+    private Estado estado;
     private Integer codibge;
-    private Integer idEstado;
 
-    public Integer getIdEstado() {
-        return idEstado;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setIdEstado(Integer idEstado) {
-        this.idEstado = idEstado;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
-    
-
+   
     public Long getIdCidade() {
         return idCidade;
     }
